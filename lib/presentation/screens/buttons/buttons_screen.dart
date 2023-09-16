@@ -69,7 +69,33 @@ class _HomeView extends StatelessWidget {
                   backgroundColor: MaterialStatePropertyAll(themeColor.primary),
                   iconColor: const MaterialStatePropertyAll(Colors.white)),
             ),
+            const CustomButton(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorsTheme = Theme.of(context).colorScheme;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Material(
+        color: colorsTheme.primary,
+        child: InkWell(
+          onTap: () {},
+          child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                "Custom button",
+                style: TextStyle(color: Colors.white),
+              )),
         ),
       ),
     );
