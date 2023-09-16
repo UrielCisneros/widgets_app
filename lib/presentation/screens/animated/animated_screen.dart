@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AnimatedScreen extends StatelessWidget {
   const AnimatedScreen({super.key});
 
-  static const name = 'animate';
+  static const pathName = 'animate';
 
   @override
   Widget build(BuildContext context) {
