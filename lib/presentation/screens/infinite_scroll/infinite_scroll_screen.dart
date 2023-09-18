@@ -1,24 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class InfiniteScrollScreen extends StatelessWidget {
+class InfiniteScrollScreen extends StatefulWidget {
   const InfiniteScrollScreen({super.key});
 
   static const pathName = 'infinite_scroll';
 
   @override
-  Widget build(BuildContext context) {
-    return const _InfiniteScrollScreen();
-  }
+  State<InfiniteScrollScreen> createState() => _InfiniteScrollScreenState();
 }
 
-class _InfiniteScrollScreen extends StatelessWidget {
-  const _InfiniteScrollScreen();
+class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
+  final ScrollController scrollController = ScrollController();
+  List<int> imagesIds = [1, 2, 3, 4, 5];
+  bool isLoading = false;
+  bool isMounted = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener(() {
+      if ((scrollController.position.pixels + 500) >=
+          scrollController.position.maxScrollExtent) {
+        loadNextPage();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    isMounted = false;
+    scrollController.dispose();
+  }
+
+  void addPageImages() {
+    final lastIdImages = imagesIds.last;
+    imagesIds.addAll([1, 2, 3, 4, 5].map((e) => lastIdImages + 1));
+  }
+
+  Future loadNextPage() async {
+    if (isLoading) return true;
+    isLoading = true;
+    setState(() {});
+    await Future.delayed(const Duration(seconds: 2));
+    addPageImages();
+    isLoading = false;
+    if (!isMounted) return;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<int> imagesIds = [1, 2, 3, 4, 5];
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: MediaQuery.removePadding(
@@ -26,6 +60,7 @@ class _InfiniteScrollScreen extends StatelessWidget {
         removeTop: true,
         removeBottom: true,
         child: ListView.builder(
+          controller: scrollController,
           itemCount: imagesIds.length,
           itemBuilder: (context, index) {
             return FadeInImage(
