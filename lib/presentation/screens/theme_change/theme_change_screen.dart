@@ -33,14 +33,32 @@ class ThemeChangeScreen extends ConsumerWidget {
   }
 }
 
-class _ThemePageView extends StatelessWidget {
+class _ThemePageView extends ConsumerWidget {
   const _ThemePageView();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final List<Color> colorListStateProvider = ref.watch(colorListProvider);
+    final int indexSelectedColorStateProvider =
+        ref.watch(indexColorSelectedProvider);
+
     return ListView.builder(
+      itemCount: colorListStateProvider.length,
       itemBuilder: (context, index) {
-        return Text("color");
+        final Color color = colorListStateProvider[index];
+        return RadioListTile(
+          title: Text(
+            "Este color",
+            style: TextStyle(color: color),
+          ),
+          subtitle: Text(color.value.toString()),
+          activeColor: color,
+          value: index,
+          groupValue: indexSelectedColorStateProvider,
+          onChanged: (value) {
+            ref.read(indexColorSelectedProvider.notifier).state = index;
+          },
+        );
       },
     );
   }
