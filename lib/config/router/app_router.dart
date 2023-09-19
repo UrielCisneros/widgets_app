@@ -43,5 +43,10 @@ final appRouter = GoRouter(initialLocation: '/', routes: [
     name: ProgressScreen.pathName,
     path: '/progress',
     builder: (context, state) => const ProgressScreen(),
+  ),
+  GoRoute(
+    name: CounterScreen.pathName,
+    path: '/counter_app',
+    builder: (context, state) => const CounterScreen(),
   )
 ]);

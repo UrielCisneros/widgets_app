@@ -53,6 +53,10 @@ const appMenuItems = <MenuItems>[
       title: "Infinite scroll and Pull",
       subTitle: "Infinite list and pull or refresh",
       link: '/infinite_scroll',
-      icon: Icons.list_alt_outlined)
-  // MenuItems(title: "", subTitle: subTitle, link: link, icon: icon)
+      icon: Icons.list_alt_outlined),
+  MenuItems(
+      title: "Counter app",
+      subTitle: "App for counter",
+      link: '/counter_app',
+      icon: Icons.summarize_outlined)
 ];
