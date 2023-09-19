@@ -33,7 +33,13 @@ class CounterScreen extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          //Esta es una forma de hacerlo
+          // ref.read(counterProvider.notifier).state++;
+
+          //Esta es otra forma de hacerlo (Esta nos regresa una funcion con el estado actual)
+          ref.read(counterProvider.notifier).update((state) => state + 1);
+        },
         child: const Icon(Icons.add),
       ),
     );
