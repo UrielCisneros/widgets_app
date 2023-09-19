@@ -25,4 +25,9 @@ class AppTheme {
       brightness: isDarkMode ? Brightness.dark : Brightness.light,
       colorSchemeSeed: colorList[selectColor],
       appBarTheme: const AppBarTheme(centerTitle: false));
+
+//Comn el coyWith hacemos una copia de la instancia, pero pasamos por parametros los datos que queremos cambiar
+  AppTheme copyWith({int? selectColor, bool? isDarkMode}) => AppTheme(
+      selectColor: selectColor ?? this.selectColor,
+      isDarkMode: isDarkMode ?? this.isDarkMode);
 }
