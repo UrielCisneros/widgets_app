@@ -58,5 +58,10 @@ const appMenuItems = <MenuItems>[
       title: "Counter app",
       subTitle: "App for counter",
       link: '/counter_app',
-      icon: Icons.summarize_outlined)
+      icon: Icons.summarize_outlined),
+  MenuItems(
+      title: "Change theme",
+      subTitle: "Config for change theme",
+      link: "/theme_change",
+      icon: Icons.color_lens_outlined)
 ];
